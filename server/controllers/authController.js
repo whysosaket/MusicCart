@@ -1,11 +1,14 @@
 const dotenv = require("dotenv");
 dotenv.config();
-const isValidEmail = require("../utils/isValidEmail");
+
 const jwt = require("jsonwebtoken");
-const convertToTitleCase = require("../utils/makeTitleCase");
-const isValidName = require("../utils/isValidName");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+
+const convertToTitleCase = require("../utils/makeTitleCase");
+const isValidName = require("../utils/isValidName");
+const isValidMobile = require("../utils/isValidMobile");
+const isValidEmail = require("../utils/isValidEmail");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -26,14 +29,18 @@ const createUser = async (req, res) => {
       return res.json({success, error: "Email Address is not valid!"});
     } 
 
+    if(!isValidMobile(mobile)){
+      return res.json({success, error: "Phone Number is not valid!"});
+    }
+
     let user = await User.findOne({email: email});
     if(user){
       return res.json({success, error: "Email Address is already registered!"});
     }
 
-    user = await User.findOne({phone: phone});
+    user = await User.findOne({mobile: mobile});
     if(user){
-      return res.json({success, error: "Phone Number is already registered!"});
+      return res.json({success, error: "Mobile Number is already registered!"});
     }
 
     if(password.length < 6){
