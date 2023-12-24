@@ -4,6 +4,7 @@ import { FiPhoneCall } from "react-icons/fi";
 
 const Navbar = () => {
   return (
+    <>
     <div className="navbar">
         <div className='contact navbar-item'>
             <FiPhoneCall className='phone-icon' />
@@ -16,6 +17,8 @@ const Navbar = () => {
             Login | Signup
         </div>
     </div>
+    <div className='extramargin'></div>
+    </>
   )
 }
 

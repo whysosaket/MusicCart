@@ -1,0 +1,46 @@
+.filterbar{
+    margin-top: 1rem;
+    padding: 5px;
+    display: flex;
+}
+
+.filterbar .icon{
+    margin-right: 0.5rem;
+    color: #303030;
+}
+
+.filterbar .view{
+    margin-right: 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #303030;
+}
+
+.filterbar select{
+    border: 1px solid #C8C8C8;
+    background-color: #C8C8C8;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #303030;
+    margin: auto;
+    margin-right: 1rem;
+}
+
+.filterbar .sort{
+    font-size: 1rem;
+    font-weight: 500;
+    color: #303030;
+    margin: auto;
+    margin-right: 1rem;
+}
+
+.sort select{
+    border: 1px solid #C8C8C8;
+    background-color: #C8C8C8;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #303030;
+    margin: auto;
+    background-color: white;
+    margin-right: 1rem;
+}
