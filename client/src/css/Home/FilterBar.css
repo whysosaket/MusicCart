@@ -24,6 +24,8 @@
     color: #303030;
     margin: auto;
     margin-right: 1rem;
+    border-radius: 20px;
+    padding: 5px;
 }
 
 .filterbar .sort{
@@ -37,9 +39,6 @@
 .sort select{
     border: 1px solid #C8C8C8;
     background-color: #C8C8C8;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #303030;
     margin: auto;
     background-color: white;
     margin-right: 1rem;
