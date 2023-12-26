@@ -1,12 +1,14 @@
 import React from 'react'
 import "../css/Home/ProductItem.css"
 import ProductImage from "../assets/product.png";
+import { MdAddShoppingCart } from "react-icons/md";
 
 const ProductItem = () => {
   return (
     <div>
     <div className='productitem'>
         <img src={ProductImage} alt="product" className='productimage' />
+        <MdAddShoppingCart className='carticon' />
     </div>
     <div className='productdetails'>
         <span className='name'>boAt Rockerz 551ANC</span>

@@ -3,7 +3,7 @@
   width: 200px;
   height: 200px;
   padding: 10px;
-    margin: auto;
+  margin: auto;
   background-color: #0066ff2b;
   overflow: hidden;
 }
@@ -30,4 +30,8 @@
 
 .productdetails .name {
   font-size: 17px;
+}
+
+.productitem .carticon {
+  position: absolute;
 }
