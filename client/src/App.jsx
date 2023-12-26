@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Product from './pages/Product'
 import Cart from './pages/Cart'
+import Success from './pages/Success'
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/product" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/success" element={<Success/>} />
         </Routes>
       
      </div>
