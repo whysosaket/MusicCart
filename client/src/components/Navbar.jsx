@@ -15,7 +15,7 @@ const Navbar = () => {
             Get 50% off on selected items | Shop Now
         </div>
         <div className='loginsignup navbar-item'>
-            <Link to="/login">Login</Link> | Signup
+            <Link to="/login">Login</Link> | <Link to="/signup">Signup</Link>
         </div>
     </div>
     <div className='extramargin'></div>

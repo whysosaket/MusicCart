@@ -16,7 +16,7 @@
   justify-content: center;
   padding: 20px 40px;
   border: 1px solid #d9d9d9;
-  border-radius: 10px;
+  border-radius: 18px;
 }
 
 .authform h1 {
@@ -28,12 +28,18 @@
 .authform label {
   font-size: 16px;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
-.authform p {
+.authform .terms {
   font-size: 13px;
   font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.authform .message {
+  font-size: 14px;
+  font-weight: 600;
   margin-bottom: 20px;
 }
 
@@ -110,4 +116,22 @@
   height: 1px;
   background-color: #b6b6b6;
   margin: auto;
+}
+
+.alreadyhaveanaccount {
+  font-size: 15px;
+  font-weight: 500;
+  width: 45%;
+  margin: 40px auto;
+  color: #000;
+  display: flex;
+  justify-content: center;
+}
+
+.alreadyhaveanaccount .signin {
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 5px;
+  color: #2e0052;
+  text-decoration: underline;
 }
