@@ -8,7 +8,9 @@ const ProductItem = () => {
     <div>
     <div className='productitem'>
         <img src={ProductImage} alt="product" className='productimage' />
+        <div className='carticoncontainer'>
         <MdAddShoppingCart className='carticon' />
+        </div>
     </div>
     <div className='productdetails'>
         <span className='name'>boAt Rockerz 551ANC</span>
