@@ -3,12 +3,13 @@ import "../css/Cart/Cart.css";
 import CartTitle from "../components/Cart/CartTitle";
 import CartItems from "../components/Cart/CartItems";
 import CartPriceDetails from "../components/Cart/CartPriceDetails";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   return (
     <div className="cart">
       <div className="goback">
-        <button className="gobackbtn">Back to Products</button>
+        <Link to="/" className="gobackbtn">Back to Products</Link>
       </div>
       <CartTitle />
       <div className="cartdiv">

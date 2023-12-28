@@ -58,6 +58,9 @@ const productSchema = new mongoose.Schema({
         max: 100000,
         default: 0,
     },
+    about: {
+        type: Array
+    }
 });
 
 module.exports = mongoose.model("product", productSchema);

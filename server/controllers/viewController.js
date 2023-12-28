@@ -25,8 +25,8 @@ const getAllProducts = async (req, res) => {
 
 const getProductById = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
-    return res.json({ success: true, product });
+    const products = await Product.findById(req.params.id);
+    return res.json({ success: true, product: products });
   } catch (err) {
     console.log(err);
     return res.json({ success: false, error: "Internal Server Error!" });
@@ -45,12 +45,4 @@ const getProductByNames = async (req, res) => {
   }
 };
 
-const getProductByLimit = async (req, res) => {
-  try {
-    const products = await Product.find({}).limit(parseInt(req.params.limit));
-    return res.json({ success: true, products });
-  } catch (err) {
-    console.log(err);
-    return res.json({ success: false, error: "Internal Server Error!" });
-  }
-};
+module.exports = { getAllProducts, getProductById, getProductByNames };

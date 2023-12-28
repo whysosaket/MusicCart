@@ -65,10 +65,13 @@
   font-weight: 500;
 }
 
+.authform .logo{
+  margin: 20px auto;
+}
+
 .logocomponent {
   display: flex;
   flex-direction: row;
-  margin: 20px auto;
   user-select: none;
   cursor: pointer;
   text-decoration: none;

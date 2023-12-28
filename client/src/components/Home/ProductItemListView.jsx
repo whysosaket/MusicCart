@@ -1,6 +1,6 @@
 import React from "react";
-import "../css/Home/ProductItem.css";
-import ProductImage from "../assets/product.png";
+import "../../css/Home/ProductItem.css";
+import ProductImage from "../../assets/product.png";
 import { MdAddShoppingCart } from "react-icons/md";
 
 const ProductItemListView = () => {

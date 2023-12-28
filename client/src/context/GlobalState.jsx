@@ -78,6 +78,7 @@ const GlobalState = (props) => {
   }
 
   const handleLogout = () => {
+    console.log("logout");
     localStorage.removeItem("token");
     setUser({name: "", email: "", mobile: ""});
   }

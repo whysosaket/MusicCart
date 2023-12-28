@@ -33,19 +33,24 @@
   justify-content: flex-end;
 }
 
-.heroright button {
+.heroright .cartbtn {
+  text-decoration: none;
   background-color: #1D7000;
   color: white;
   border: none;
   border-radius: 20px;
   padding: 10px;
-  font-size: 10px;
+  font-size: 12px;
   cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: center;
   font-weight: 600;
   min-width: 100px;
+}
+
+.heroright .cartbtn:hover {
+  background-color: #1D6000;
 }
 
 .heroright .carticon {
