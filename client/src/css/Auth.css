@@ -68,7 +68,10 @@
 .logocomponent {
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
+  margin: 20px auto;
+  user-select: none;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .logocomponent .logo {
@@ -134,4 +137,33 @@
   margin-left: 5px;
   color: #2e0052;
   text-decoration: underline;
+}
+
+.logoutbutton {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  user-select: none;
+}
+
+.logoutbutton:hover {
+  cursor: pointer;
+  color: #b6b6b6;
+}
+
+.authbutton {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  user-select: none;
+  text-decoration: none;
+}
+
+.authbutton:hover {
+  cursor: pointer;
+  color: #b6b6b6;
 }

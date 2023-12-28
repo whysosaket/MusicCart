@@ -1,12 +1,13 @@
 import React from "react";
 import "../css/Auth.css";
+import { Link } from "react-router-dom";
 
 const Logo = () => {
   return (
-      <div className="logocomponent">
+      <Link to="/" className="logocomponent">
         <img src="logo.png" alt="logo" className="logo" />
         <span className="text">Musicart</span>
-      </div>
+      </Link>
   );
 };
 

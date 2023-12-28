@@ -77,9 +77,14 @@ const GlobalState = (props) => {
     }
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUser({name: "", email: "", mobile: ""});
+  }
+
   return (
     <GlobalContext.Provider
-      value={{ login, signup, progress, user }}
+      value={{ login, signup, progress, user, handleLogout }}
     >
       {props.children}
     </GlobalContext.Provider>
