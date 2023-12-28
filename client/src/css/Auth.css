@@ -63,9 +63,14 @@
   color: white;
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
 }
 
-.authform .logo{
+.authform button:hover {
+  background-color: #4d007f;
+}
+
+.login .logo, .signup .logo{
   margin: 20px auto;
 }
 
@@ -90,6 +95,7 @@
 }
 
 .createaccount {
+  text-decoration: none;
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 40px;
@@ -99,6 +105,12 @@
   height: 40px;
   background-color: white;
   color: #000;
+  cursor: pointer;
+}
+
+.createaccount:hover {
+  background-color: #2e0052;
+  color: white;
 }
 
 .divider {

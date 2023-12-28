@@ -6,12 +6,13 @@ import CheckoutPayment from '../components/Checkout/CheckoutPayment'
 import CheckoutReviewItems from '../components/Checkout/CheckoutReviewItems'
 import CheckOutMiniOrder from '../components/Checkout/CheckOutMiniOrder'
 import PlaceOrderWidget from '../components/Checkout/PlaceOrderWidget'
+import { Link } from 'react-router-dom'
 
 const Checkout = () => {
   return (
     <div className="checkout">
       <div className="goback">
-        <button className="gobackbtn">Back to cart</button>
+        <Link to="/cart" className="gobackbtn">Back to cart</Link>
       </div>
       <CheckoutTitle />
       <div className="checkoutdiv">

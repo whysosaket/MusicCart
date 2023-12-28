@@ -2,8 +2,13 @@ import React from "react";
 import "../../css/Home/ProductItem.css";
 import ProductImage from "../../assets/product.png";
 import { MdAddShoppingCart } from "react-icons/md";
+import {useNavigate} from "react-router-dom";
 
 const ProductItemListView = () => {
+  const navigate = useNavigate();
+  const handleGotoProduct = () => {
+    navigate("/product");
+  }
   return (
     <div className="listview">
       <div className="productitem">
@@ -23,7 +28,7 @@ const ProductItemListView = () => {
           with Mic, up to 50 Hours Playtime, Multi-Point Connection, App
           Support, AUX & Voice Assistant Support for Mobile Phones (Black)
         </p>
-        <button className="detailsbutton">Details</button>
+        <button onClick={handleGotoProduct} className="detailsbutton">Details</button>
       </div>
     </div>
   );

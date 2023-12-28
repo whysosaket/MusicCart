@@ -3,6 +3,7 @@ import Logo from "../components/Logo";
 import "../css/Auth.css";
 import SignupForm from "../components/AuthPages/SingupForm";
 import GlobalContext from "../context/GlobalContext";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
 
@@ -15,7 +16,7 @@ const Signup = () => {
         <Logo />
         <SignupForm meth={signup} />
         <div className="alreadyhaveanaccount">
-          Already have an account? <span className="signin"> Sign in</span>
+          Already have an account? <Link to="/login" className="signin"> Sign in</Link>
         </div>
       </div>
     </div>
