@@ -15,7 +15,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find({});
+    let products = await Product.find({}, "name color type price image description");
     return res.json({ success: true, products });
   } catch (err) {
     console.log(err);

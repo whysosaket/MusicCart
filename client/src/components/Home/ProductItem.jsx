@@ -4,11 +4,12 @@ import ProductImage from "../../assets/product.png";
 import { MdAddShoppingCart } from "react-icons/md";
 import {Link} from "react-router-dom";
 
-const ProductItem = () => {
+const ProductItem = (props) => {
+  const product = props.item;
   return (
     <div>
       <div className="productitem">
-        <img src={ProductImage} alt="product" className="productimage" />
+        <img src={`data:image/png;base64, ${product.image}`} alt="product" className="productimage" />
         {localStorage.getItem("token") && (
           <div className="carticoncontainer">
             <MdAddShoppingCart className="carticon" />
@@ -16,9 +17,9 @@ const ProductItem = () => {
         )}
       </div>
       <div className="productdetails">
-        <span className="name">boAt Rockerz 551ANC</span>
-        <span className="price">Price - ₹ 2,999</span>
-        <span className="type">Blue | On-ear headphone</span>
+        <span className="name">{product.name}</span>
+        <span className="price">Price - ₹ {product.price}</span>
+        <span className="type">{product.color} | {product.type}</span>
       </div>
     </div>
   );

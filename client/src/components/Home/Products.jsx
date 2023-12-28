@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import ProductItem from './ProductItem';
 import "../../css/Home/Products.css"
 import ProductItemListView from './ProductItemListView';
@@ -8,13 +8,17 @@ const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'a', 'b'];
 
 const Products = () => {
 
-  const {isList} = useContext(ProductContext);
+  const {isList, getAllProducts, products} = useContext(ProductContext);
+
+  useEffect(() => {
+    getAllProducts();
+  }, [])
 
   return (
     <div className={`${isList?'productlist':"productsgrid"} products `}>
-        {a.map((item, index) => {
-            if (isList) return <ProductItemListView key={index} />
-            else return <ProductItem key={index} />
+        {products.map((item, index) => {
+            if (isList) return <ProductItemListView item={item} key={index} />
+            else return <ProductItem item={item} key={index} />
         })}
     </div>
   )

@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
     min: 10,
     max: 10,
   },
+  cart: {
+    type: Array,
+    default: [],
+  },
 });
 
 module.exports = mongoose.model("user", userSchema);
