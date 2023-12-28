@@ -3,4 +3,4 @@ const isValidEmail = (email) => {
     return regex.test(email);
 };
 
-export default isValidEmail;
+module.exports = isValidEmail;

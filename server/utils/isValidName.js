@@ -3,4 +3,4 @@ const isValidName = (name) => {
     return regex.test(name);
 };
 
-export default isValidName;
+module.exports = isValidName;

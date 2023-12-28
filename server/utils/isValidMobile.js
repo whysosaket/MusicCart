@@ -3,4 +3,4 @@ const isValidMobile = (mobile) => {
     return regex.test(mobile);
 };
 
-export default isValidMobile;
+module.exports = isValidMobile;

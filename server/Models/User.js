@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     max: 1024,
   },
   mobile: {
-    type: Number,
+    type: String,
     required: true,
     min: 10,
     max: 10,

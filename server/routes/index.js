@@ -1,11 +1,11 @@
 const expess = require("express");
 const router = expess.Router();
 
-const auth =require("./auth");
+const auth = require("./auth");
 
-
-export default ()=> {
+const r = () => {
   auth(router);
-
   return router;
 };
+
+module.exports = r;

@@ -16,6 +16,9 @@ const createUser = async (req, res) => {
   let success = false;
 
   let {name, email, password, mobile} = req.body;
+  name = name.toString().toLowerCase();
+  email = email.toString().toLowerCase();
+  mobile = mobile.toString().toLowerCase();
 
   try{
 
@@ -60,10 +63,8 @@ const createUser = async (req, res) => {
           id:newUser.id
       }
     }
-  const authToken = jwt.sign(data, JWT_SECRET);
 
     success = true;
-    console.log(authToken)
     return res.json({ success, info: "Account Created Successfully!!" });
   } catch (error) {
     console.log(error);
@@ -75,6 +76,7 @@ const createUser = async (req, res) => {
 const loginUser = async (req, res) => {
   let success = false;
   let { login, password } = req.body;
+  login = login.toString().toLowerCase();
   console.log(login, password);
   try {
     let emailCheck = await User.findOne({ email: login });
@@ -98,11 +100,11 @@ const loginUser = async (req, res) => {
     const token = jwt.sign({ id: user._id }, JWT_SECRET);
 
     success = true;
-    return res.json({ success, token, data: user });
+    return res.json({ success, info:"Login Success", token, data: user });
   } catch (error) {
     console.log(error);
     return res.json({ error: "Something Went Wrong!" });
   }
 };
 
-export { createUser, loginUser };
+module.exports = { createUser, loginUser };

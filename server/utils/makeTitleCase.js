@@ -3,4 +3,4 @@ const convertToTitleCase = (str) => {
     return str.toLowerCase().replace(/\b\w/g, (s) => s.toUpperCase());
   };
   
-  export default convertToTitleCase;
+module.exports = convertToTitleCase;
