@@ -6,7 +6,13 @@ import { useContext } from "react";
 import ProductContext from "../../context/productContext";
 
 const FilterBar = () => {
-  const { isList, setIsList } = useContext(ProductContext);
+  const { isList, setIsList, types, brands, colors, sortProducts } = useContext(ProductContext);
+
+  const handleSort = (e) => {
+    sortProducts(e.target.value);
+    console.log(e.target.value);
+  }
+
   return (
     <div className="filterbar">
       <div className="view">
@@ -71,12 +77,12 @@ const FilterBar = () => {
         </select>
       </div>
       <div className="sort">
-        <select name="sort" id="sort">
+        <select name="sort" id="sort" onChange={handleSort}>
           <option value="featured">Sort By: Featured</option>
-          <option value="black">Price: Lowest</option>
-          <option value="black">Price: Highest</option>
-          <option value="black">Name: (A-Z)</option>
-          <option value="black">Name: (Z-A)</option>
+          <option value="priceasc">Price: Lowest</option>
+          <option value="pricedesc">Price: Highest</option>
+          <option value="nameasc">Name: (A-Z)</option>
+          <option value="namedesc">Name: (Z-A)</option>
         </select>
       </div>
     </div>

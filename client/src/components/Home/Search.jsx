@@ -1,14 +1,38 @@
-import React from 'react'
-import "../../css/Home/Search.css"
+import React, { useState, useContext } from "react";
+import "../../css/Home/Search.css";
 import { GoSearch } from "react-icons/go";
+import ProductContext from "../../context/productContext";
 
 const Search = () => {
-  return (
-    <div className='search'>
-      <GoSearch className="searchicon" />
-      <input type="text" placeholder="Search Product" className="searchinput" />
-    </div>
-  )
-}
+  const [search, setSearch] = useState("");
+  const context = useContext(ProductContext);
+  const { getProductsByNames } = context;
+  const [timeoutIds, setTimeoutIds] = useState([]);
 
-export default Search
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+    // handling debounce
+    timeoutIds.forEach((id) => clearTimeout(id));
+    const newTimeoutId = setTimeout(() => {
+      getProductsByNames(e.target.value);
+    }, 1500);
+
+    setTimeoutIds((prevTimeoutIds) => [...prevTimeoutIds, newTimeoutId]);
+  };
+
+  return (
+    <div className="search">
+      <GoSearch className="searchicon" />
+      <input
+        onChange={handleChange}
+        type="text"
+        placeholder="Search Product"
+        className="searchinput"
+        value={search}
+      />
+    </div>
+  );
+};
+
+export default Search;

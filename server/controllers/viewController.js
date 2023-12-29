@@ -16,7 +16,18 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const getAllProducts = async (req, res) => {
   try {
     let products = await Product.find({}, "name color type price image description");
-    return res.json({ success: true, products });
+
+    let types = new Set();
+    let brands = new Set();
+    let colors = new Set();
+
+    products.forEach((product) => {
+      types.add(product.type);
+      brands.add(product.brand);
+      colors.add(product.color);
+    });
+
+    return res.json({ success: true, products, types, brands, colors });
   } catch (err) {
     console.log(err);
     return res.json({ success: false, error: "Internal Server Error!" });
@@ -36,15 +47,63 @@ const getProductById = async (req, res) => {
 const getProductByNames = async (req, res) => {
   try {
     const products = await Product.find({
-      name: { $regex: req.params.name, $options: "i" },
+      name: { $regex: req.body.name , $options: "i" },
     });
-    return res.json({ success: true, products });
+    let types = new Set();
+    let brands = new Set();
+    let colors = new Set();
+
+    products.forEach((product) => {
+      types.add(product.type);
+      brands.add(product.brand);
+      colors.add(product.color);
+    });
+    return res.json({ success: true, products, types, brands, colors });
   } catch (err) {
     console.log(err);
     return res.json({ success: false, error: "Internal Server Error!" });
   }
 };
 
-// give a example url for getProductById
+const sortProducts = async (req, res) => {
+  try {
+    const sortType = req.body.sortType;
+    switch (sortType){
+      case "priceasc":
+        var products = await Product.find({}, "name color type price image description").sort({price: 1});
+        break;
+      case "pricedesc":
+        var products = await Product.find({}, "name color type price image description").sort({price: -1});
+        break;
+        case "nameasc":
+          var products = await Product.find({}, "name color type price image description")
+            .sort({ name: 1 })
+            .collation({ locale: 'en', strength: 2 });
+          break;
+        case "namedesc":
+          var products = await Product.find({}, "name color type price image description")
+            .sort({ name: -1 })
+            .collation({ locale: 'en', strength: 2 });
+          break;
+      default:
+        var products = await Product.find({}, "name color type price image description");
+        break;
+    }
+    let types = new Set();
+    let brands = new Set();
+    let colors = new Set();
 
-module.exports = { getAllProducts, getProductById, getProductByNames };
+    products.forEach((product) => {
+      types.add(product.type);
+      brands.add(product.brand);
+      colors.add(product.color);
+    });
+
+    return res.json({ success: true, products, types, brands, colors });
+  } catch (err) {
+    console.log(err);
+    return res.json({ success: false, error: "Internal Server Error!" });
+  }
+};
+
+module.exports = { getAllProducts, getProductById, getProductByNames, sortProducts };

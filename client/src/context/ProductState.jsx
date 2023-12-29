@@ -9,7 +9,9 @@ const ProductState = (props) => {
   const {setProgress} = useContext(GlobalContext);
   const [isList, setIsList] = useState(true);
   const [products, setProducts] = useState([]);
-  const [id, setId] = useState(null);
+  const [types, setTypes] = useState([]);
+  const [brands, setBrands] = useState([]);
+  const [colors, setColors] = useState([]);
 
   const toastMessage = (message, type) => {
     if(type === "success") toast.success(message);
@@ -29,6 +31,10 @@ const ProductState = (props) => {
       const data = await response.json();
       if (data.success) {
         setProducts(data.products);
+        setTypes(data.types);
+        setBrands(data.brands);
+        setColors(data.colors);
+        console.log(data.types);
       return true;
       } else {
         toastMessage(data.error, "warning");
@@ -63,9 +69,61 @@ const ProductState = (props) => {
     }
   }
 
+  const getProductsByNames = async (name) =>{
+    try {
+      const response = await fetch(`${url}/api/view/name`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({name}),
+      });
+      const data = await response.json();
+      if (data.success) {
+        setProducts(data.products);
+        setTypes(data.types);
+        setBrands(data.brands);
+        setColors(data.colors);
+      } else {
+        toastMessage(data.error, "warning");
+      return false;
+      }
+      
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
+  const sortProducts = async (sortType) =>{
+    try {
+      const response = await fetch(`${url}/api/view/sort`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({sortType}),
+      });
+      const data = await response.json();
+      if (data.success) {
+        setProducts(data.products);
+        setTypes(data.types);
+        setBrands(data.brands);
+        setColors(data.colors);
+      } else {
+        toastMessage(data.error, "warning");
+      return false;
+      }
+      
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
   return (
     <ProductContext.Provider
-      value={{ isList, setIsList, products, getAllProducts, getProductById, id, setId }}
+      value={{ isList, setIsList, products,types,brands,colors,  getAllProducts, getProductById, getProductsByNames, sortProducts }}
     >
       {props.children}
     </ProductContext.Provider>
