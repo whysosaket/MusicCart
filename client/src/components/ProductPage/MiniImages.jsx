@@ -2,11 +2,11 @@ import React from "react";
 import MiniImage from "./MiniImage";
 import ProductImage from "../../assets/lg.png";
 
-const MiniImages = () => {
+const MiniImages = (props) => {
   return (
     <>
       <div className="productimagecontainer">
-        <img src={ProductImage} className="productimage" alt="product" />
+        <img src={`data:image/png;base64, ${props.image}`} className="productimage" alt="product" />
       </div>
       <div className="miniimages">
         <MiniImage />

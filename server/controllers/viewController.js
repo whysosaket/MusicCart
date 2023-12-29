@@ -45,4 +45,6 @@ const getProductByNames = async (req, res) => {
   }
 };
 
+// give a example url for getProductById
+
 module.exports = { getAllProducts, getProductById, getProductByNames };

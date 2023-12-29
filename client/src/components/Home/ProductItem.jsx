@@ -1,15 +1,21 @@
-import React from "react";
+import React, {useContext} from "react";
 import "../../css/Home/ProductItem.css";
-import ProductImage from "../../assets/product.png";
 import { MdAddShoppingCart } from "react-icons/md";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+
 
 const ProductItem = (props) => {
   const product = props.item;
+  const navigate = useNavigate();
+
+  const handleClick = () =>{
+    navigate(`/product/${product._id}`);
+  }
+
   return (
     <div>
       <div className="productitem">
-        <img src={`data:image/png;base64, ${product.image}`} alt="product" className="productimage" />
+        <img onClick={handleClick} src={`data:image/png;base64, ${product.image}`} alt="product" className="productimage" />
         {localStorage.getItem("token") && (
           <div className="carticoncontainer">
             <MdAddShoppingCart className="carticon" />

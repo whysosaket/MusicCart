@@ -9,6 +9,7 @@ const ProductState = (props) => {
   const {setProgress} = useContext(GlobalContext);
   const [isList, setIsList] = useState(true);
   const [products, setProducts] = useState([]);
+  const [id, setId] = useState(null);
 
   const toastMessage = (message, type) => {
     if(type === "success") toast.success(message);
@@ -18,8 +19,6 @@ const ProductState = (props) => {
   }
 
   const getAllProducts = async () =>{
-    // console.log(setProgress);
-    // setProgress(20);
     try {
       const response = await fetch(`${url}/api/view/all`, {
         method: "GET",
@@ -27,21 +26,38 @@ const ProductState = (props) => {
           "Content-Type": "application/json",
         },
       });
-      // setProgress(40);
       const data = await response.json();
-      // setProgress(60);
       if (data.success) {
         setProducts(data.products);
-        // setProgress(100);
       return true;
       } else {
         toastMessage(data.error, "warning");
-        // setProgress(100);
       return false;
       }
       
     } catch (error) {
-      // setProgress(100);
+      console.log(error);
+      return false;
+    }
+  }
+
+  const getProductById = async (id) =>{
+    try {
+      const response = await fetch(`${url}/api/view/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (data.success) {
+      return data.product;
+      } else {
+        toastMessage(data.error, "warning");
+      return false;
+      }
+      
+    } catch (error) {
       console.log(error);
       return false;
     }
@@ -49,7 +65,7 @@ const ProductState = (props) => {
 
   return (
     <ProductContext.Provider
-      value={{ isList, setIsList, products, getAllProducts }}
+      value={{ isList, setIsList, products, getAllProducts, getProductById, id, setId }}
     >
       {props.children}
     </ProductContext.Provider>

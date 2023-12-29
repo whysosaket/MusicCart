@@ -1,7 +1,7 @@
 import React from 'react'
 import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 
-const Reviews = () => {
+const Reviews = (props) => {
   return (
     <div className='reviews'>
         <IoIosStar className='star' />
@@ -9,7 +9,7 @@ const Reviews = () => {
         <IoIosStar className='star' />
         <IoIosStar className='star' />
         <IoIosStarOutline className='star' />
-        <span className='reviewscount'>(50 Customer reviews)</span>
+        <span className='reviewscount'>({props.reviews.length} Customer reviews)</span>
     </div>
   )
 }
