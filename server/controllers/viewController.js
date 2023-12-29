@@ -15,7 +15,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const getAllProducts = async (req, res) => {
   try {
-    let products = await Product.find({}, "name color type price image description");
+    let products = await Product.find({}, "name color type price image description brand");
 
     let types = new Set();
     let brands = new Set();
@@ -26,6 +26,10 @@ const getAllProducts = async (req, res) => {
       brands.add(product.brand);
       colors.add(product.color);
     });
+
+    types = Array.from(types);
+    brands = Array.from(brands);
+    colors = Array.from(colors);
 
     return res.json({ success: true, products, types, brands, colors });
   } catch (err) {
@@ -48,7 +52,7 @@ const getProductByNames = async (req, res) => {
   try {
     const products = await Product.find({
       name: { $regex: req.body.name , $options: "i" },
-    });
+    }, "name color type price image description brand");
     let types = new Set();
     let brands = new Set();
     let colors = new Set();
@@ -58,6 +62,11 @@ const getProductByNames = async (req, res) => {
       brands.add(product.brand);
       colors.add(product.color);
     });
+
+    types = Array.from(types);
+    brands = Array.from(brands);
+    colors = Array.from(colors);
+
     return res.json({ success: true, products, types, brands, colors });
   } catch (err) {
     console.log(err);
@@ -65,28 +74,39 @@ const getProductByNames = async (req, res) => {
   }
 };
 
-const sortProducts = async (req, res) => {
+const sortFilterProducts = async (req, res) => {
   try {
-    const sortType = req.body.sortType;
+    const sortType = req.body.sortType? req.body.sortType : "featured";
+    const company = req.body.company? req.body.company : "";
+    const type = req.body.type? req.body.type : "";
+    const color = req.body.color? req.body.color : "";
+    const minPrice = req.body.minPrice? req.body.minPrice : 0;
+    const maxPrice = req.body.maxPrice? req.body.maxPrice : 1000000;
+
+     let products = await Product.find(
+      {
+        brand: { $regex: company, $options: "i" },
+        type: { $regex: type, $options: "i" },
+        color: { $regex: color, $options: "i" },
+        price: { $gte: minPrice, $lte: maxPrice },
+      },
+      "name color type price image description brand"
+    );
+    
     switch (sortType){
       case "priceasc":
-        var products = await Product.find({}, "name color type price image description").sort({price: 1});
+        products.sort((a, b) => a.price - b.price);
         break;
       case "pricedesc":
-        var products = await Product.find({}, "name color type price image description").sort({price: -1});
+        products.sort((a, b) => b.price - a.price);
         break;
-        case "nameasc":
-          var products = await Product.find({}, "name color type price image description")
-            .sort({ name: 1 })
-            .collation({ locale: 'en', strength: 2 });
-          break;
-        case "namedesc":
-          var products = await Product.find({}, "name color type price image description")
-            .sort({ name: -1 })
-            .collation({ locale: 'en', strength: 2 });
-          break;
+      case "nameasc":
+        products.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case "namedesc":
+        products.sort((a, b) => b.name.localeCompare(a.name));
+        break;
       default:
-        var products = await Product.find({}, "name color type price image description");
         break;
     }
     let types = new Set();
@@ -99,6 +119,10 @@ const sortProducts = async (req, res) => {
       colors.add(product.color);
     });
 
+    types = Array.from(types);
+    brands = Array.from(brands);
+    colors = Array.from(colors);
+
     return res.json({ success: true, products, types, brands, colors });
   } catch (err) {
     console.log(err);
@@ -106,4 +130,6 @@ const sortProducts = async (req, res) => {
   }
 };
 
-module.exports = { getAllProducts, getProductById, getProductByNames, sortProducts };
+
+
+module.exports = { getAllProducts, getProductById, getProductByNames, sortFilterProducts };

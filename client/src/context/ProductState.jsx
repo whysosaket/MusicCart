@@ -95,9 +95,9 @@ const ProductState = (props) => {
     }
   }
 
-  const sortProducts = async (sortType) =>{
+  const sortFilterProducts = async (sortType, company, type, color, minPrice, maxPrice) =>{
     try {
-      const response = await fetch(`${url}/api/view/sort`, {
+      const response = await fetch(`${url}/api/view/sfp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -105,6 +105,7 @@ const ProductState = (props) => {
         body: JSON.stringify({sortType}),
       });
       const data = await response.json();
+      console.log(data);
       if (data.success) {
         setProducts(data.products);
         setTypes(data.types);
@@ -123,7 +124,7 @@ const ProductState = (props) => {
 
   return (
     <ProductContext.Provider
-      value={{ isList, setIsList, products,types,brands,colors,  getAllProducts, getProductById, getProductsByNames, sortProducts }}
+      value={{ isList, setIsList, products,types,brands,colors,  getAllProducts, getProductById, getProductsByNames, sortFilterProducts }}
     >
       {props.children}
     </ProductContext.Provider>
