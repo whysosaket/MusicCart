@@ -4,6 +4,8 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
+import { useContext } from 'react';
+import GlobalContext from '../context/GlobalContext';
 
 const dict = {
   "/login": "Login",
@@ -18,7 +20,10 @@ const Hero = () => {
   const location = useLocation();
   if(location.pathname === "/login" || location.pathname === "/signup") return null;
 
-  const title = dict[location.pathname];
+  let title = dict[location.pathname];
+  if(location.pathname.charAt(1) === "p") title = "Product";
+
+  const {isAuthenticated} = useContext(GlobalContext);
 
   return (
     <div className='hero'>
@@ -27,7 +32,7 @@ const Hero = () => {
         <span className='location'>Home{title&&"/ "}{title}</span>
       </div>
       <div className='heroright'>
-        {localStorage.getItem("token")&&
+        {isAuthenticated&&
           <Link className='cartbtn' to="/cart">
             <MdOutlineShoppingCart className='carticon' />
             View Cart

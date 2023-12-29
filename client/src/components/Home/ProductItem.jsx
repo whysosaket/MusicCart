@@ -2,6 +2,8 @@ import React, {useContext} from "react";
 import "../../css/Home/ProductItem.css";
 import { MdAddShoppingCart } from "react-icons/md";
 import {useNavigate} from "react-router-dom";
+import GlobalContext from "../../context/GlobalContext";
+
 
 
 const ProductItem = (props) => {
@@ -12,11 +14,13 @@ const ProductItem = (props) => {
     navigate(`/product/${product._id}`);
   }
 
+  const {isAuthenticated} = useContext(GlobalContext);
+
   return (
     <div>
       <div className="productitem">
         <img onClick={handleClick} src={`data:image/png;base64, ${product.image}`} alt="product" className="productimage" />
-        {localStorage.getItem("token") && (
+        {isAuthenticated && (
           <div className="carticoncontainer">
             <MdAddShoppingCart className="carticon" />
           </div>

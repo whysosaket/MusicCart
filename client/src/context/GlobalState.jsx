@@ -8,6 +8,14 @@ const GlobalState = (props) => {
 
   const [progress, setProgress] = useState(0);
   const [user, setUser] = useState({name: "", email: "", mobile: ""});
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if(token){
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   const toastMessage = (message, type) => {
     if(type === "success") toast.success(message);
@@ -33,6 +41,7 @@ const GlobalState = (props) => {
         setUser({name: data.data.name, email: data.data.email, mobile: data.data.mobile});
         localStorage.setItem("token", data.token);
         toastMessage(data.info, "success");
+        setIsAuthenticated(true);
         setProgress(100);
       return true;
       } else {
@@ -80,12 +89,13 @@ const GlobalState = (props) => {
   const handleLogout = () => {
     console.log("logout");
     localStorage.removeItem("token");
+    setIsAuthenticated(false);
     setUser({name: "", email: "", mobile: ""});
   }
 
   return (
     <GlobalContext.Provider
-      value={{ login, signup, progress, user, handleLogout }}
+      value={{ login, signup, progress, user, handleLogout, isAuthenticated }}
     >
       {props.children}
     </GlobalContext.Provider>

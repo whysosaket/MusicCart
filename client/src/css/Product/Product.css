@@ -77,3 +77,10 @@
     width: 140%;
     height: 140%;
 }
+
+.logintobuy {
+    color: red;
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 20px;
+}
