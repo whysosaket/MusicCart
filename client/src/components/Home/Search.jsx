@@ -5,13 +5,13 @@ import ProductContext from "../../context/productContext";
 
 const Search = () => {
   const [search, setSearch] = useState("");
-  const context = useContext(ProductContext);
-  const { getProductsByNames } = context;
+  const { getProductsByNames, setIsSearch } = useContext(ProductContext);
   const [timeoutIds, setTimeoutIds] = useState([]);
 
 
   const handleChange = (e) => {
     setSearch(e.target.value);
+    setIsSearch(e.target.value);
     // handling debounce
     timeoutIds.forEach((id) => clearTimeout(id));
     const newTimeoutId = setTimeout(() => {

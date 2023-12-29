@@ -82,6 +82,7 @@ const sortFilterProducts = async (req, res) => {
     const color = req.body.color? req.body.color : "";
     const minPrice = req.body.minPrice? req.body.minPrice : 0;
     const maxPrice = req.body.maxPrice? req.body.maxPrice : 1000000;
+    const search = req.body.search? req.body.search : "";
 
      let products = await Product.find(
       {
@@ -89,6 +90,7 @@ const sortFilterProducts = async (req, res) => {
         type: { $regex: type, $options: "i" },
         color: { $regex: color, $options: "i" },
         price: { $gte: minPrice, $lte: maxPrice },
+        name: { $regex: search, $options: "i" },
       },
       "name color type price image description brand"
     );
