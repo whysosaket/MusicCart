@@ -97,7 +97,7 @@ const FilterBar = () => {
           </>
         )}
       </div>
-      <div className="fliter">
+      <div className="filter">
         <select
           onChange={handleChange}
           name="type_filter"
