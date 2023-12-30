@@ -1,8 +1,8 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-const {User, addCartItem} = require("../models/User");
-const Product = require("../models/Product");
+const {User, addCartItem} = require("../Models/User");
+const Product = require("../Models/Product");
 
 const sampleAbout = [
   "Brand's lightest Wireless Noise-cancelling headband ever",

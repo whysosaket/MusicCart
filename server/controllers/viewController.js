@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-const Product = require("../models/Product");
+const Product = require("../Models/Product");
 
 const getAllProducts = async (req, res) => {
   try {
