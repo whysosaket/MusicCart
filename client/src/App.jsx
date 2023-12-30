@@ -10,7 +10,7 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Success from "./pages/Success";
 import Checkout from "./pages/Checkout";
-import GlobalState from "./context/globalState";
+import GlobalState from "./context/GlobalState";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingBar from "./components/LoadingBar";
