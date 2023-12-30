@@ -4,6 +4,10 @@ import {useNavigate} from 'react-router-dom'
 const PlaceOrderWidget = (props) => {
   const navigate = useNavigate();
   const handleCheckout = () => {
+    if(props.total === 0){
+      navigate('/');
+      return;
+    }
     props.checkout();
     navigate('/success');
   }

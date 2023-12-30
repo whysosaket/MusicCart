@@ -63,6 +63,29 @@ const CartState = (props) => {
     }
   };
 
+  const buyNow = async (id) => {
+    try {
+      const response = await fetch(`${url}/api/view/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      let data = await response.json();
+      if (data.success) {
+        data.quantity = 1;
+        setCart([data.product]);
+        setTotal(data.product.price);
+      } else {
+        toastMessage(data.error, "warning");
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  };
+
   const checkout = async () => {
     try {
       const response = await fetch(`${url}/api/product/checkout`, {
@@ -114,7 +137,7 @@ const CartState = (props) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, checkout, getCart, total, updateQuantity }}
+      value={{ cart, addToCart, checkout, getCart, total, updateQuantity, buyNow }}
     >
       {props.children}
     </CartContext.Provider>

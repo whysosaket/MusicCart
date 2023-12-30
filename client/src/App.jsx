@@ -38,7 +38,10 @@ function App() {
                   </Route>
                   <Route path="/cart" element={<Cart />} />
                   <Route path="/success" element={<Success />} />
-                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/checkout">
+                    <Route path="" element={<Checkout />} />
+                    <Route path=":id" element={<Checkout buyNow={true} />} />
+                  </Route>
                 </Routes>
               </div>
               <Footer />

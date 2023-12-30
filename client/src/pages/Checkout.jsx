@@ -1,16 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../css/Checkout.css"
 import CheckoutDeliveryAddress from '../components/Checkout/CheckoutDeliveryAddress'
 import CheckoutPayment from '../components/Checkout/CheckoutPayment'
 import CheckoutReviewItems from '../components/Checkout/CheckoutReviewItems'
 import CheckOutMiniOrder from '../components/Checkout/CheckOutMiniOrder'
 import PlaceOrderWidget from '../components/Checkout/PlaceOrderWidget'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import CartContext from '../context/cartContext';
 import { useContext } from 'react';
 
-const Checkout = () => {
-  const {cart, total, checkout} = useContext(CartContext);
+const Checkout = (props) => {
+  const {cart, total, checkout, buyNow} = useContext(CartContext);
+  const {id} = useParams();
+
+  const dummyCheckout = () => {
+    
+  };
+
+  useEffect(() => {
+    if(props.buyNow){
+      buyNow(id);
+    }
+  }, [])
+
 
   return (
     <div className="checkout">
@@ -29,7 +41,7 @@ const Checkout = () => {
           <CheckOutMiniOrder total={total} />
         </div>
         <div className="checkoutright">
-          <PlaceOrderWidget total={total} checkout={checkout} />
+          <PlaceOrderWidget total={total} checkout={props.buyNow?dummyCheckout:checkout} />
         </div>
       </div>
     </div>

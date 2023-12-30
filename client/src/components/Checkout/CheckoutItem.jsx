@@ -9,7 +9,7 @@ const CheckoutItem = (props) => {
         <h3>Clour : {color}</h3>
         <h3>In Stock</h3>
         <h2>Estimated delivery :</h2>
-        <h2>Monday — FREE Standard Delivery</h2>
+        <h2>Monday — Standard Delivery</h2>
     </div>
   )
 }

@@ -1,12 +1,14 @@
 import React, {useContext} from 'react'
 import CartContext from '../../context/cartContext'
+import {useNavigate} from 'react-router-dom'
 
 const ProductButtons = (props) => {
+  const navigate = useNavigate();
   const {addToCart} = useContext(CartContext);
   return (
     <div className='buttons'>
         <button onClick={()=>addToCart(props.id)} className='addtocart'>Add to Cart</button>
-        <button className='buynow'>Buy Now</button>
+        <button onClick={()=> navigate(`/checkout/${props.id}`)} className='buynow'>Buy Now</button>
     </div>
   )
 }
