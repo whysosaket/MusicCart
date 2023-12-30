@@ -7,10 +7,10 @@ const CheckoutDeliveryAddress = () => {
             1. Delivery address
        </div>
        <div className='lr'>
-            <p>Kine 1</p>
-            <p>Kine 1</p>
-            <p>Kine 1</p>
-            <p>Kine 1</p>
+            <p>Saket Aryan</p>
+            <p>Flat No. 123, ABC Apartments</p>
+            <p>XYZ Road, Mumbai</p>
+            <p>Maharashtra - 400001</p>
         </div>
     </div>
   )

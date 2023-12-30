@@ -1,7 +1,7 @@
 import React, {useContext, useState, useEffect} from "react";
 import "../css/Product/Product.css";
 import MiniImages from "../components/ProductPage/MiniImages";
-import ProductTitle from "../components/ProductPage/ProductTitle";
+
 import ProductDescription from "../components/ProductPage/ProductDescription";
 import { Link } from "react-router-dom";
 import {useParams} from "react-router-dom";

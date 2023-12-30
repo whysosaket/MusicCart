@@ -6,8 +6,12 @@ import CheckoutReviewItems from '../components/Checkout/CheckoutReviewItems'
 import CheckOutMiniOrder from '../components/Checkout/CheckOutMiniOrder'
 import PlaceOrderWidget from '../components/Checkout/PlaceOrderWidget'
 import { Link } from 'react-router-dom'
+import CartContext from '../context/cartContext';
+import { useContext } from 'react';
 
 const Checkout = () => {
+  const {cart, total, checkout} = useContext(CartContext);
+
   return (
     <div className="checkout">
       <div className="goback">
@@ -18,14 +22,14 @@ const Checkout = () => {
         <div className="checkoutleft">
           <CheckoutDeliveryAddress />
           <hr />
-          <CheckoutPayment />
+          <CheckoutPayment  />
           <hr />
-          <CheckoutReviewItems />
+          <CheckoutReviewItems cart={cart} />
           <hr />
-          <CheckOutMiniOrder />
+          <CheckOutMiniOrder total={total} />
         </div>
         <div className="checkoutright">
-          <PlaceOrderWidget />
+          <PlaceOrderWidget total={total} checkout={checkout} />
         </div>
       </div>
     </div>

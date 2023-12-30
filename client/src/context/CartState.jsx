@@ -74,7 +74,7 @@ const CartState = (props) => {
       });
       const data = await response.json();
       if (data.success) {
-        toastMessage(data.info, "success");
+        toastMessage("Order Success", "success");
         return true;
       } else {
         toastMessage(data.error, "warning");

@@ -12,7 +12,6 @@ const dict = {
   "/signup": "Signup",
   "/product": "Product",
   "/cart": "View Cart",
-  "/success": "Success",
   "/checkout": "Checkout",
 }
 
@@ -32,7 +31,7 @@ const Hero = () => {
         <span className='location'>Home{title&&"/ "}{title}</span>
       </div>
       <div className='heroright'>
-        {isAuthenticated&&
+        {isAuthenticated&& location.pathname != "/success" &&
           <Link className='cartbtn' to="/cart">
             <MdOutlineShoppingCart className='carticon' />
             View Cart

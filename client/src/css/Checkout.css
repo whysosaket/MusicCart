@@ -99,17 +99,18 @@
 
 .checkout .checkoutitem{
    color: black;
+   margin: auto 10px;
 }
 
 .checkout img{
-    width: 50%;
+    width: 170px;
     border-radius: 5px;
     margin: 0 auto;
     border: 1px solid black;
 }
 
 .checkoutitem h1{
-    font-size: 18px;
+    font-size: 14px;
     margin: 0;
 }
 
@@ -181,4 +182,9 @@
 
 .checkout .orderrow .left{
     align-items: end;
+}
+
+.citems {
+    display: flex;
+    overflow: scroll;
 }

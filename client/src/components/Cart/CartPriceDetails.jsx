@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import CartContext from "../../context/cartContext";
 
 
 const CartPriceDetails = (props) => {
   const navigate = useNavigate();
   const [conv, setConv] = useState(0);
+  const {getCart} = useContext(CartContext);
   useEffect(() => {
     if (props.total > 0) {
       setConv(45);
@@ -12,6 +14,11 @@ const CartPriceDetails = (props) => {
       setConv(0);
     }
   }, [props.total]);
+
+  const handleCheckout = () => {
+    getCart();
+    navigate("/checkout");
+  }
   return (
     <div className="cartpricedetails">
       <h4>PRICE DETAILS</h4>
@@ -33,7 +40,7 @@ const CartPriceDetails = (props) => {
         <span>Total Amount</span>
         <span>₹{props.total+conv}</span>
       </div>
-      <button onClick={()=> navigate("/checkout")} className="placeorder">PLACE ORDER</button>
+      <button onClick={handleCheckout} className="placeorder">PLACE ORDER</button>
     </div>
   );
 };
