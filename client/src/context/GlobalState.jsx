@@ -5,26 +5,25 @@ import { toast } from "react-toastify";
 let url = import.meta.env.VITE_URL;
 
 const GlobalState = (props) => {
-
   const [progress, setProgress] = useState(0);
-  const [user, setUser] = useState({name: "", email: "", mobile: ""});
+  const [user, setUser] = useState({ name: "", email: "", mobile: "" });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if(token){
+    if (token) {
       setIsAuthenticated(true);
     }
   }, []);
 
   const toastMessage = (message, type) => {
-    if(type === "success") toast.success(message);
-    else if(type === "error") toast.error(message);
-    else if(type === "warning") toast.warning(message);
+    if (type === "success") toast.success(message);
+    else if (type === "error") toast.error(message);
+    else if (type === "warning") toast.warning(message);
     else toast.info(message);
-  }
+  };
 
-  const login = async (login, password) =>{
+  const login = async (login, password) => {
     setProgress(20);
     try {
       const response = await fetch(`${url}/api/auth/login`, {
@@ -38,26 +37,29 @@ const GlobalState = (props) => {
       const data = await response.json();
       setProgress(60);
       if (data.success) {
-        setUser({name: data.data.name, email: data.data.email, mobile: data.data.mobile});
+        setUser({
+          name: data.data.name,
+          email: data.data.email,
+          mobile: data.data.mobile,
+        });
         localStorage.setItem("token", data.token);
         toastMessage(data.info, "success");
         setIsAuthenticated(true);
         setProgress(100);
-      return true;
+        return true;
       } else {
         toastMessage(data.error, "warning");
         setProgress(100);
-      return false;
+        return false;
       }
-      
     } catch (error) {
       setProgress(100);
       console.log(error);
       return false;
     }
-  }
+  };
 
-  const signup = async (name, email, mobile, password) =>{
+  const signup = async (name, email, mobile, password) => {
     setProgress(20);
     try {
       const response = await fetch(`${url}/api/auth/signup`, {
@@ -84,14 +86,14 @@ const GlobalState = (props) => {
       setProgress(100);
       return false;
     }
-  }
+  };
 
   const handleLogout = () => {
     console.log("logout");
     localStorage.removeItem("token");
     setIsAuthenticated(false);
-    setUser({name: "", email: "", mobile: ""});
-  }
+    setUser({ name: "", email: "", mobile: "" });
+  };
 
   return (
     <GlobalContext.Provider

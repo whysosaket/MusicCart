@@ -2,13 +2,16 @@ import React from 'react'
 import CartTotal from './CartTotal'
 import CartItem from './CartItem'
 
-const CartItems = () => {
+const CartItems = (props) => {
+  const {cart, total} = props;
   return (
     <div className='cartitems'>
         <hr />
-            <CartItem />
+            {cart.map((item) => (
+                <CartItem key={item._id} item={item} />
+            ))}
         <hr />
-        <CartTotal />
+        <CartTotal total={total} len={cart.length} />
     </div>
   )
 }

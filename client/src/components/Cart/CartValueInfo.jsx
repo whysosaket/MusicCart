@@ -1,11 +1,11 @@
 import React from 'react'
 
-const CartValueInfo = () => {
+const CartValueInfo = (props) => {
   return (
     <div className='cartvalueinfo'>
         <div className='totalmrp'>
             <span>Total MRP</span>
-            <span>₹3500</span>
+            <span>₹{props.total}</span>
         </div>
         <div className='discount'>
             <span>Discount on MRP</span>

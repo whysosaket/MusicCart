@@ -1,13 +1,13 @@
 import React from 'react'
 
-const CartTotal = () => {
+const CartTotal = (props) => {
   return (
     <div className='carttotal'>
         <div className='carttotalleft'>
-            1 Item
+            {props.len} Item
         </div>
         <div className='carttotalright'>
-            ₹3500
+            ₹{props.total}
         </div>
     </div>
   )

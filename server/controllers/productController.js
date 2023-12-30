@@ -37,21 +37,6 @@ const addToCart = async (req, res) => {
   }
 }
 
-const removeFromCart = async (req, res) => {
-  try {
-    const { id } = req.body;
-    const user = await User.findById(req.user.id);
-    if (!user.cart.includes(id)) {
-      return res.json({ success: false, error: "Product does not exist in cart!" });
-    }
-    await User.findByIdAndUpdate(req.user.id, { cart: user.cart.filter((item) => item !== id) });
-    return res.json({ success: true });
-  } catch (err) {
-    console.log(err);
-    return res.json({ success: false, error: "Internal Server Error!" });
-  }
-}
-
 
 const getCart = async (req, res) => {
   try {
@@ -60,7 +45,8 @@ const getCart = async (req, res) => {
       return res.json({ success: false, error: "User does not exist!" });
     }
     const products = await Product.find({ _id: { $in: user.cart } });
-    return res.json({ success: true, products });
+    const total = products.reduce((acc, product) => acc + product.price, 0);
+    return res.json({ success: true, products, total });
   } catch (err) {
     console.log(err);
     return res.json({ success: false, error: "Internal Server Error!" });
@@ -124,4 +110,4 @@ const addProduct = async (req, res) => {
   }
 };
 
-module.exports = { addToCart, removeFromCart, getCart, checkout, addProduct };
+module.exports = { addToCart, getCart, checkout, addProduct };
