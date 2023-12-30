@@ -107,6 +107,7 @@ const FilterBar = () => {
           <option value="" disabled>
             Headphone Type
           </option>
+          <option value="">All</option>
           {types.map((type, index) => (
             <option key={index} value={type}>
               {type}

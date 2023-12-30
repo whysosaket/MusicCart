@@ -89,3 +89,35 @@
   min-width: 100px;
   width: 10%;
 }
+
+@media screen and (max-width: 768px) {
+
+  .productitem{
+    width: 86%;
+    height: 50%;
+  }
+
+  .productitem img{
+    width: 90%;
+    height: 90%;
+  }
+
+  .productdetails{
+    padding: 10px;
+  }
+
+  .productdetails > * {
+    margin-top: 5px;
+    font-size: 11px;
+  }
+
+  .productdetails .name {
+    font-size: 14px;
+  }
+
+  .productitemcontainer{
+    border-radius: 5px;
+    border: 1px solid black;
+  }
+    
+}

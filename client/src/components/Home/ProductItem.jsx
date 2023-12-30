@@ -19,7 +19,7 @@ const ProductItem = (props) => {
   const {addToCart} = useContext(CartContext);
 
   return (
-    <div>
+    <div className="productitemcontainer">
       <div className="productitem">
         <img onClick={handleClick} src={`data:image/png;base64, ${product.image}`} alt="product" className="productimage" />
         {isAuthenticated && (

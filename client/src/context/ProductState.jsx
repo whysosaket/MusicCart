@@ -7,7 +7,7 @@ let url = import.meta.env.VITE_URL;
 
 const ProductState = (props) => {
   const { setProgress } = useContext(GlobalContext);
-  const [isList, setIsList] = useState(true);
+  const [isList, setIsList] = useState(false);
   const [products, setProducts] = useState([]);
   const [types, setTypes] = useState([]);
   const [brands, setBrands] = useState([]);

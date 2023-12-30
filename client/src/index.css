@@ -19,3 +19,15 @@ body {
   color: #303030;
   opacity: 1;
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .hero, .footer {
+    display: none;
+  }
+  
+}
