@@ -55,7 +55,9 @@
 
 @media screen and (max-width: 768px) {
   .banner {
-    max-height: 100px;;
+    max-height: 100px;
+    margin-top: 4rem;
+    overflow-x: hidden;
   }
 
   .bannerleft {

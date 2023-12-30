@@ -34,3 +34,24 @@
   margin-top: 20px;
   min-height: 2px;
 }
+
+.mobile{
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    height: 65px;
+    padding-top: 0;
+  }
+
+  .navbar .mobile{
+    display: block;
+    margin: 10px 0;
+  }
+
+  .pc{
+    display: none;
+  }
+}

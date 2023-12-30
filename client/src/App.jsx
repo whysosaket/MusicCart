@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LoadingBar from "./components/LoadingBar";
 import ProductState from "./context/ProductState";
 import CartState from "./context/CartState";
+import BottomNavbar from "./components/BottomNavbar";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
                   </Route>
                 </Routes>
               </div>
+              <BottomNavbar />
               <Footer />
             </Router>
           </CartState>

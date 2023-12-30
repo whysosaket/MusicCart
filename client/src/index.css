@@ -26,7 +26,7 @@ body {
     margin-top: 20px;
   }
 
-  .hero, .footer, .logocomponent, .search {
+  .hero, .footer, .logocomponent, .container .search{
     display: none;
   }
   

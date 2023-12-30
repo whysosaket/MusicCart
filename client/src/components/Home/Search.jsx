@@ -2,11 +2,13 @@ import React, { useState, useContext } from "react";
 import "../../css/Home/Search.css";
 import { GoSearch } from "react-icons/go";
 import ProductContext from "../../context/productContext";
+import {useNavigate} from 'react-router-dom'
 
 const Search = () => {
   const [search, setSearch] = useState("");
   const { getProductsByNames, setIsSearch } = useContext(ProductContext);
   const [timeoutIds, setTimeoutIds] = useState([]);
+  const navigate = useNavigate()
 
 
   const handleChange = (e) => {
@@ -15,6 +17,7 @@ const Search = () => {
     // handling debounce
     timeoutIds.forEach((id) => clearTimeout(id));
     const newTimeoutId = setTimeout(() => {
+      navigate('/');
       getProductsByNames(e.target.value);
     }, 1500);
 

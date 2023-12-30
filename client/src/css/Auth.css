@@ -190,6 +190,7 @@
   .authform {
     width: 80%;
     height: 80%;
+    margin-top: 30px;
   }
   .authform h1 {
     font-size: 25px;
