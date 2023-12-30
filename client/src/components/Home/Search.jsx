@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "../../css/Home/Search.css";
 import { GoSearch } from "react-icons/go";
-import ProductContext from "../../context/productContext";
+import ProductContext from "../../context/ProductContext";
 import {useNavigate} from 'react-router-dom'
 
 const Search = () => {

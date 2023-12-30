@@ -3,7 +3,7 @@ import "../../css/Home/ProductItem.css";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
-import CartContext from "../../context/cartContext";
+import CartContext from "../../context/CartContext";
 
 const ProductItemListView = (props) => {
   const navigate = useNavigate();

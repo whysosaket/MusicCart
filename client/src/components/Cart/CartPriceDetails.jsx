@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import CartContext from "../../context/cartContext";
+import CartContext from "../../context/CartContext";
 
 
 const CartPriceDetails = (props) => {

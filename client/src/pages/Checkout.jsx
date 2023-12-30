@@ -6,7 +6,7 @@ import CheckoutReviewItems from "../components/Checkout/CheckoutReviewItems";
 import CheckOutMiniOrder from "../components/Checkout/CheckOutMiniOrder";
 import PlaceOrderWidget from "../components/Checkout/PlaceOrderWidget";
 import { Link, useParams } from "react-router-dom";
-import CartContext from "../context/cartContext";
+import CartContext from "../context/CartContext";
 import { useContext } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";

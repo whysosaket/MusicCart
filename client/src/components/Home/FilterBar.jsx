@@ -3,7 +3,7 @@ import "../../css/Home/FilterBar.css";
 import { IoGrid, IoGridOutline } from "react-icons/io5";
 import { TiThList, TiThListOutline } from "react-icons/ti";
 import { useContext, useState } from "react";
-import ProductContext from "../../context/productContext";
+import ProductContext from "../../context/ProductContext";
 
 const FilterBar = () => {
   const { isList, setIsList, types, brands, colors, sortFilterProducts, isSearch } =

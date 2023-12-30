@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import ProductItem from "./ProductItem";
 import "../../css/Home/Products.css";
 import ProductItemListView from "./ProductItemListView";
-import ProductContext from "../../context/productContext";
+import ProductContext from "../../context/ProductContext";
 import Spinner from "../ProductPage/Spinner";
 
 const Products = () => {

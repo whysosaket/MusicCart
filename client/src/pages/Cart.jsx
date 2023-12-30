@@ -4,7 +4,7 @@ import CartTitle from "../components/Cart/CartTitle";
 import CartItems from "../components/Cart/CartItems";
 import CartPriceDetails from "../components/Cart/CartPriceDetails";
 import { Link, useNavigate } from "react-router-dom";
-import CartContext from "../context/cartContext";
+import CartContext from "../context/CartContext";
 import GlobalContext from "../context/GlobalContext";
 import { IoMdArrowBack } from "react-icons/io";
 import MobileCartItems from "../components/Cart/Mobile/MobileCartItems";

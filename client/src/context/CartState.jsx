@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CartContext from "./cartContext";
+import CartContext from "./CartContext";
 import { toast } from "react-toastify";
 
 let url = import.meta.env.VITE_URL;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { toast } from "react-toastify";
-import ProductContext from "./productContext";
+import ProductContext from "./ProductContext";
 import GlobalContext from "./GlobalContext";
 
 let url = import.meta.env.VITE_URL;
