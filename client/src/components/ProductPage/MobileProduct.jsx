@@ -11,10 +11,10 @@ const MobileProduct = (props) => {
   return (
     <div className="mobile">
       <div className="productcontainer">
-        {isAuthenticated && <MobileBuyNow id={props.product.id} />}
+        {isAuthenticated && <MobileBuyNow id={props.product._id} />}
         <MobileImages image={props.product.image} />
         <MobileProductDetails product={props.product} />
-        {isAuthenticated ? <ProductButtons id={props.product.id}/> : <LoginToBuy/>}
+        {isAuthenticated ? <ProductButtons id={props.product._id}/> : <LoginToBuy/>}
       </div>
     </div>
   );
