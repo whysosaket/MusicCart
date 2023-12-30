@@ -188,3 +188,36 @@
     display: flex;
     overflow: scroll;
 }
+
+@media screen and (max-width: 768px) {
+    .checkout .checkoutdiv{
+        flex-direction: column;
+    }
+
+    .checkout .leftitem{
+        flex-direction: column;
+    }
+
+    .checkout .checkoutleft {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .checkout .checkoutitem{
+        margin: 10px;
+    }
+
+    .checkout .title{
+        text-decoration: none;
+        justify-content: start;
+        margin-top: 10px;
+    }
+
+    .checkout .leftitem .ll, .checkout .leftitem .lr{
+        width: 90%;
+    }
+
+    .checkout .placeorderwidget{
+       border: none;
+    }
+}
