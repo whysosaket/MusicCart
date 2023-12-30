@@ -57,7 +57,11 @@
   .banner {
     max-height: 100px;
     margin-top: 4rem;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
+  }
+
+  .container{
+    overflow: hidden;
   }
 
   .bannerleft {

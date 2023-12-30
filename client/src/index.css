@@ -29,5 +29,10 @@ body {
   .hero, .footer, .logocomponent, .container .search{
     display: none;
   }
+
+  .navbar .mobile .logocomponent {
+    display: flex;
+    margin-left: 20px;
+  }
   
 }

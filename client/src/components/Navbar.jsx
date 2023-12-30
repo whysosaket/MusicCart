@@ -1,17 +1,29 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../css/Navbar.css";
 import { FiPhoneCall } from "react-icons/fi";
 import GlobalContext from "../context/GlobalContext";
 import Search from "./Home/Search";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const { handleLogout } = useContext(GlobalContext);
+  const location = useLocation();
+
   return (
     <>
       <div className="navbar">
         <div className="mobile">
-          <Search />
+          {location.pathname === "/login" ||
+          location.pathname === "/signup" ||
+          location.pathname === "/checkout" ||
+          location.pathname === "/success" ? (
+            <Logo />
+          ) : (
+            <div className="navbar-item">
+              <Search />
+            </div>
+          )}
         </div>
         <div className="contact navbar-item pc">
           <FiPhoneCall className="phone-icon" />

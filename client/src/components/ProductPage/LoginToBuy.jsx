@@ -1,8 +1,12 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 
 const LoginToBuy = () => {
   return (
-    <div className='logintobuy'>Login To Buy This Item</div>
+    <div className='logintobuy'>
+      <Link to="/login" className='login'>Login</Link>
+      To Buy This Item
+    </div>
   )
 }
 
