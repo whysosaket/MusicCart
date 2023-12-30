@@ -41,7 +41,9 @@ const Product = () => {
         <Link to="/" className="gobackbtn">Back to Products</Link>
       </div>
       <div className="productcontainer">
-        <ProductTitle title={product.description} />
+      <div className="producttitle">
+        {product.description}
+    </div>
         <div className="container">
           <div className="containerleft">
             <MiniImages image={product.image} />

@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
-import CartValueInfo from "./CartValueInfo";
+import {useNavigate} from "react-router-dom";
+
 
 const CartPriceDetails = (props) => {
+  const navigate = useNavigate();
   const [conv, setConv] = useState(0);
   useEffect(() => {
     if (props.total > 0) {
@@ -31,7 +33,7 @@ const CartPriceDetails = (props) => {
         <span>Total Amount</span>
         <span>₹{props.total+conv}</span>
       </div>
-      <button className="placeorder">PLACE ORDER</button>
+      <button onClick={()=> navigate("/checkout")} className="placeorder">PLACE ORDER</button>
     </div>
   );
 };

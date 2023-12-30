@@ -1,17 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
-const bcrypt = require("bcrypt");
 const Product = require("../models/Product");
-
-const convertToTitleCase = require("../utils/makeTitleCase");
-const isValidName = require("../utils/isValidName");
-const isValidMobile = require("../utils/isValidMobile");
-const isValidEmail = require("../utils/isValidEmail");
-
-const JWT_SECRET = process.env.JWT_SECRET;
 
 const getAllProducts = async (req, res) => {
   try {

@@ -1,24 +1,30 @@
-import React from 'react'
-import ProductImage from '../../assets/product.png'
+import React, {useContext} from 'react'
+import CartContext from '../../context/cartContext';
 
-const CartItem = () => {
+const CartItem = (props) => {
+    const {_id, name, color, price, image, quantity} = props.item;
+    const {updateQuantity} = useContext(CartContext);
+
+    const handleUpdateQuantity = (e) =>{
+        updateQuantity(_id, e.target.value);
+    }
   return (
     <div className='cartitem'>
         <div className='cartitemimage'>
-            <img src={ProductImage} alt='product' />
+            <img src={`data:image/png;base64, ${image}`} alt='product' />
         </div>
         <div className='cartiteminfo'>
-            <h3>Sony WH-CH720N</h3>
-            <p>Clour : Black</p>
+            <h3>{name}</h3>
+            <p>Clour : {color}</p>
             <p>In Stock</p>
         </div>
         <div className='cartitemprice'>
         <h3>Price</h3>
-            ₹3500
+            ₹{price}
         </div>
         <div className='cartitemquantity'>
             <h3>Quantity</h3>
-            <select>
+            <select onChange={handleUpdateQuantity} defaultValue={quantity}>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
@@ -26,7 +32,7 @@ const CartItem = () => {
         </div>
         <div className='cartitemtotal'>
             <h3>Total</h3>
-            ₹3500
+            ₹{price * quantity}
         </div>
     </div>
   )

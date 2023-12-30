@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const {User} = require("../models/User");
 const bcrypt = require("bcrypt");
 
 const convertToTitleCase = require("../utils/makeTitleCase");

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CartContext from "./cartContext";
 import { toast } from "react-toastify";
 
@@ -21,7 +21,7 @@ const CartState = (props) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-            "auth-token": localStorage.getItem("token")
+          "auth-token": localStorage.getItem("token"),
         },
       });
       const data = await response.json();
@@ -45,13 +45,13 @@ const CartState = (props) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-            "auth-token": localStorage.getItem("token")
+          "auth-token": localStorage.getItem("token"),
         },
         body: JSON.stringify({ id }),
       });
       const data = await response.json();
       if (data.success) {
-        toastMessage(data.info, "success");
+        toastMessage("Item Added", "success");
         return true;
       } else {
         toastMessage(data.error, "warning");
@@ -69,7 +69,7 @@ const CartState = (props) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token")
+          "auth-token": localStorage.getItem("token"),
         },
       });
       const data = await response.json();
@@ -86,9 +86,35 @@ const CartState = (props) => {
     }
   };
 
+  const updateQuantity = async (id, quantity) => {
+    try {
+      const response = await fetch(`${url}/api/product/updatequantity`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token"),
+        },
+        body: JSON.stringify({ id, quantity }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        toastMessage(data.info, "success");
+        return true;
+      } else {
+        toastMessage(data.error, "warning");
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    } finally {
+      getCart();
+    }
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, checkout, getCart, total }}
+      value={{ cart, addToCart, checkout, getCart, total, updateQuantity }}
     >
       {props.children}
     </CartContext.Provider>

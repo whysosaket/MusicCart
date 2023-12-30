@@ -3,6 +3,7 @@ import "../../css/Home/ProductItem.css";
 import { MdAddShoppingCart } from "react-icons/md";
 import {useNavigate} from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
+import CartContext from "../../context/cartContext";
 
 
 
@@ -15,13 +16,14 @@ const ProductItem = (props) => {
   }
 
   const {isAuthenticated} = useContext(GlobalContext);
+  const {addToCart} = useContext(CartContext);
 
   return (
     <div>
       <div className="productitem">
         <img onClick={handleClick} src={`data:image/png;base64, ${product.image}`} alt="product" className="productimage" />
         {isAuthenticated && (
-          <div className="carticoncontainer">
+          <div onClick={()=>addToCart(product._id)} className="carticoncontainer">
             <MdAddShoppingCart className="carticon" />
           </div>
         )}

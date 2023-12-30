@@ -3,6 +3,7 @@ import "../../css/Home/ProductItem.css";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
+import CartContext from "../../context/cartContext";
 
 const ProductItemListView = (props) => {
   const navigate = useNavigate();
@@ -11,14 +12,15 @@ const ProductItemListView = (props) => {
   };
 
   const { isAuthenticated } = useContext(GlobalContext);
+  const {addToCart} = useContext(CartContext);
 
   const product = props.item;
   return (
     <div className="listview">
-      <div onClick={handleGotoProduct} className="productitem">
+      <div className="productitem">
         <img src={`data:image/png;base64, ${product.image}`} alt="product" className="productimage" />
         {isAuthenticated && (
-          <div className="carticoncontainer">
+          <div onClick={()=>addToCart(props.item._id)} className="carticoncontainer">
             <MdAddShoppingCart className="carticon" />
           </div>
         )}

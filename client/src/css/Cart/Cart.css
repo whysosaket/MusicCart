@@ -137,3 +137,8 @@
     display: flex;
     justify-content: space-between;
 }
+
+.cart .cartitems {
+    max-height: 200px;
+    overflow-y: scroll;
+}

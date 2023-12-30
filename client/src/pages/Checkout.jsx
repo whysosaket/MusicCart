@@ -1,6 +1,5 @@
 import React from 'react'
 import "../css/Checkout.css"
-import CheckoutTitle from '../components/Checkout/CheckoutTitle'
 import CheckoutDeliveryAddress from '../components/Checkout/CheckoutDeliveryAddress'
 import CheckoutPayment from '../components/Checkout/CheckoutPayment'
 import CheckoutReviewItems from '../components/Checkout/CheckoutReviewItems'
@@ -14,7 +13,7 @@ const Checkout = () => {
       <div className="goback">
         <Link to="/cart" className="gobackbtn">Back to cart</Link>
       </div>
-      <CheckoutTitle />
+      <div className='title'>Checkout</div>
       <div className="checkoutdiv">
         <div className="checkoutleft">
           <CheckoutDeliveryAddress />

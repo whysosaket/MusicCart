@@ -1,12 +1,8 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
-const bcrypt = require("bcrypt");
+const {User, addCartItem} = require("../models/User");
 const Product = require("../models/Product");
-
-const JWT_SECRET = process.env.JWT_SECRET;
 
 const sampleAbout = [
   "Brand's lightest Wireless Noise-cancelling headband ever",
@@ -26,10 +22,11 @@ const addToCart = async (req, res) => {
     if (!product) {
       return res.json({ success: false, error: "Product does not exist!" });
     }
-    if (user.cart.includes(id)) {
-      return res.json({ success: false, error: "Product already exists in cart!" });
+    if (!user) {
+      return res.json({ success: false, error: "User does not exist!" });
     }
-    await User.findByIdAndUpdate(req.user.id, { cart: [...user.cart, id] });
+
+    await addCartItem(user, id);
     return res.json({ success: true });
   } catch (err) {
     console.log(err);
@@ -44,9 +41,41 @@ const getCart = async (req, res) => {
     if (!user) {
       return res.json({ success: false, error: "User does not exist!" });
     }
-    const products = await Product.find({ _id: { $in: user.cart } });
-    const total = products.reduce((acc, product) => acc + product.price, 0);
+    const pids = [];
+    user.cart.forEach((item) => pids.push(item.productId));
+    let products = await Product.find({ _id: { $in: pids } });
+    let total = 0;
+    products.forEach((product) => {
+      const cartItem = user.cart.find((item) => item.productId == product.id);
+      total += cartItem.quantity * product.price;
+    });
+    products = products.map((product) => {
+      const cartItem = user.cart.find((item) => item.productId == product.id);
+      return { ...product._doc, quantity: cartItem.quantity };
+    });
     return res.json({ success: true, products, total });
+  } catch (err) {
+    console.log(err);
+    return res.json({ success: false, error: "Internal Server Error!" });
+  }
+}
+
+const updateQuantity = async (req, res) => {
+  try{
+    const {id, quantity} = req.body;
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.json({ success: false, error: "User does not exist!" });
+    }
+
+    const cartItem = user.cart.find((item) => item.productId == id);
+    if (!cartItem) {
+      return res.json({ success: false, error: "Product does not exist in cart!" });
+    }
+
+    cartItem.quantity = quantity;
+    await user.save();
+    return res.json({ success: true });
   } catch (err) {
     console.log(err);
     return res.json({ success: false, error: "Internal Server Error!" });
@@ -59,8 +88,6 @@ const checkout = async (req, res) => {
     if (!user) {
       return res.json({ success: false, error: "User does not exist!" });
     }
-    await User.findByIdAndUpdate(req.user.id, { cart: user.cart.filter((item) => item !== id) });
-    await User.findByIdAndUpdate(req.user.id, { orders: [...user.orders, id] });
     await User.findByIdAndUpdate(req.user.id, { cart: [] });
     return res.json({ success: true });
   } catch (err) {
@@ -110,4 +137,4 @@ const addProduct = async (req, res) => {
   }
 };
 
-module.exports = { addToCart, getCart, checkout, addProduct };
+module.exports = { addToCart, getCart, checkout, addProduct, updateQuantity };

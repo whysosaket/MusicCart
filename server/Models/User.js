@@ -1,5 +1,18 @@
 const mongoose = require("mongoose");
 
+const cartItemSchema = new mongoose.Schema({
+  productId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Product',
+    required: true,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+    default: 1,
+  },
+});
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -25,14 +38,32 @@ const userSchema = new mongoose.Schema({
     min: 10,
     max: 10,
   },
-  cart: {
-    type: Array,
-    default: [],
-  },
-  orders: {
-    type: Array,
-    default: [],
-  },
+  cart: [cartItemSchema]
 });
 
-module.exports = mongoose.model("user", userSchema);
+const addCartItem = async (userId, productId) => {
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    const cartItem = user.cart.find((item) => item.productId == productId);
+
+    if (cartItem) {
+      cartItem.quantity++;
+    } else {
+      user.cart.push({ productId });
+    }
+
+    const updatedUser = await user.save();
+    return updatedUser;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const User = mongoose.model("user", userSchema);
+
+module.exports = { User, addCartItem};
