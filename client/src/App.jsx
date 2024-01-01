@@ -10,12 +10,12 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Success from "./pages/Success";
 import Checkout from "./pages/Checkout";
-import GlobalState from "./context/GlobalState";
+import {GlobalState} from "./context/GlobalContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingBar from "./components/LoadingBar";
-import ProductState from "./context/ProductState";
-import CartState from "./context/CartState";
+import {ProductState} from "./context/ProductContext";
+import { CartState } from "./context/CartContext";
 import BottomNavbar from "./components/BottomNavbar";
 
 function App() {
